@@ -47,7 +47,8 @@ command = [0]*9;
 
 z_min = 92
 z_max = 173
-nav = 0
+global nav = 0
+
 def axes_map(js_sp,ax_max,ax_min):
 	sp = (js_sp+1)/2.0
 	out = (ax_max - ax_min)*sp+ax_min
