@@ -1,10 +1,3 @@
-#This will be the interpreter for the joystick.
-#It will subscribe to the joystick topic
-#Look for trigger on what type of interpretation
-#Take calculation out of ik.py and put into here
-#figure out what ik.py is looking for and give it that.
-#it should just be used to calculate widths
-
 #!/usr/bin/python
 import rospy
 from std_msgs.msg import Float32MultiArray
@@ -34,7 +27,7 @@ class commandClass:
 		if r > 7:
 			self.x = 7*(x/r)
 			self.y = 7*(y/r)
-		else
+		else:
 			self.x = 7*x
 			self.y = 7*y
 		self.z = (92-173)*((z+1)/2)+173 #normalize axes 3 from 0 to 1, set Z to reverse scale of axes 3.
@@ -71,7 +64,7 @@ def command_cb(msg):
 	elif msg.buttons[5]:
 		nav = 2
 
-	if nav = 0:
+	if nav == 0:
 		# XYZ
 		if msg.buttons[8]:
 			command3.updateZ(axes_map(msg.axes[3],z_max,z_min))
@@ -94,7 +87,7 @@ def command_cb(msg):
 			command1.updateXY(msg.axes[0],msg.axes[1],msg.axes[3])
 			command1.updateCommand()
 
-	elif nav = 1:
+	elif nav == 1:
 		# Vector motion
 
 		# same as above, X and Y are set by axes 0 and 1, Z is set by axes 3
@@ -111,7 +104,7 @@ def command_cb(msg):
 			command1.updateXYZ(msg.axes[0],msg.axes[1],msg.axes[3])
 			command1.updateCommand()		
 
-	elif nav = 2: 
+	#elif nav == 2: 
 		# gradient descent
 
 	print command
